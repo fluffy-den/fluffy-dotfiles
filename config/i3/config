@@ -1,0 +1,222 @@
+# ~/.config/i3/config
+# i3 configuration with Ayu Dark theme
+
+# Mod key (Mod1=Alt, Mod4=Super/Windows)
+set $mod Mod4
+
+# Font (smaller size)
+font pango:FiraCode Nerd Font 9
+
+#################################
+#        Ayu Dark Colors        #
+#################################
+
+set $bg            #0A0E14
+set $bg-alt        #01060E
+set $fg            #B3B1AD
+set $fg-alt        #C7C7C7
+set $blue          #53BDFA
+set $bright-blue   #59C2FF
+set $cyan          #90E1C6
+set $bright-cyan   #95E6CB
+set $green         #91B362
+set $bright-green  #C2D94C
+set $red           #EA6C73
+set $bright-red    #F07178
+set $yellow        #F9AF4F
+set $bright-yellow #FFB454
+set $purple        #FAE994
+set $bright-purple #FFEE99
+
+# Window colors
+#                       border       backgr       text     indicator    child_border
+client.focused          $bright-blue $bright-blue $bg      $bright-cyan $bright-blue
+client.focused_inactive $bg-alt      $bg-alt      $fg      $bg-alt      $bg-alt
+client.unfocused        $bg          $bg          $fg      $bg          $bg
+client.urgent           $red         $red         $bg      $bright-red  $red
+client.placeholder      $bg          $bg          $fg      $bg          $bg
+client.background       $bg
+
+#################################
+#         Gaps & Borders        #
+#################################
+
+gaps inner 4
+gaps outer 4
+
+default_border pixel 2
+default_floating_border pixel 2
+
+#################################
+#         Autostart             #
+#################################
+
+# Compositor
+exec_always --no-startup-id picom -b
+
+# Wallpaper
+exec_always --no-startup-id feh --bg-scale ~/pictures/wallpaper_mountains.jpg
+
+# Polybar
+exec_always --no-startup-id ~/.config/polybar/launch.sh
+
+# Notifications
+exec_always --no-startup-id dunst
+
+# Network manager applet
+exec --no-startup-id nm-applet
+
+#################################
+#       Key Bindings            #
+#################################
+
+# Terminal
+bindsym $mod+Return exec kitty
+
+# Kill focused window
+bindsym $mod+Shift+q kill
+
+# Application launcher
+bindsym $mod+d exec --no-startup-id rofi -show drun
+
+# Window switcher
+bindsym $mod+Tab exec --no-startup-id rofi -show window
+
+# Screenshot
+bindsym Print exec --no-startup-id flameshot gui
+
+# Lock screen
+bindsym $mod+l exec --no-startup-id betterlockscreen -l
+
+# Change focus
+bindsym $mod+j focus left
+bindsym $mod+k focus down
+bindsym $mod+i focus up
+bindsym $mod+semicolon focus right
+
+# Alternative arrow keys
+bindsym $mod+Left focus left
+bindsym $mod+Down focus down
+bindsym $mod+Up focus up
+bindsym $mod+Right focus right
+
+# Move focused window
+bindsym $mod+Shift+j move left
+bindsym $mod+Shift+k move down
+bindsym $mod+Shift+i move up
+bindsym $mod+Shift+semicolon move right
+
+# Alternative arrow keys
+bindsym $mod+Shift+Left move left
+bindsym $mod+Shift+Down move down
+bindsym $mod+Shift+Up move up
+bindsym $mod+Shift+Right move right
+
+# Split orientation
+bindsym $mod+h split h
+bindsym $mod+v split v
+
+# Fullscreen
+bindsym $mod+f fullscreen toggle
+
+# Container layout
+bindsym $mod+s layout stacking
+bindsym $mod+w layout tabbed
+bindsym $mod+e layout toggle split
+
+# Floating
+bindsym $mod+Shift+space floating toggle
+bindsym $mod+space focus mode_toggle
+
+# Focus parent/child
+bindsym $mod+a focus parent
+bindsym $mod+z focus child
+
+#################################
+#        Workspaces             #
+#################################
+
+set $ws1 "1"
+set $ws2 "2"
+set $ws3 "3"
+set $ws4 "4"
+set $ws5 "5"
+set $ws6 "6"
+set $ws7 "7"
+set $ws8 "8"
+set $ws9 "9"
+set $ws10 "10"
+
+# Switch to workspace
+bindsym $mod+1 workspace number $ws1
+bindsym $mod+2 workspace number $ws2
+bindsym $mod+3 workspace number $ws3
+bindsym $mod+4 workspace number $ws4
+bindsym $mod+5 workspace number $ws5
+bindsym $mod+6 workspace number $ws6
+bindsym $mod+7 workspace number $ws7
+bindsym $mod+8 workspace number $ws8
+bindsym $mod+9 workspace number $ws9
+bindsym $mod+0 workspace number $ws10
+
+# Move to workspace
+bindsym $mod+Shift+1 move container to workspace number $ws1
+bindsym $mod+Shift+2 move container to workspace number $ws2
+bindsym $mod+Shift+3 move container to workspace number $ws3
+bindsym $mod+Shift+4 move container to workspace number $ws4
+bindsym $mod+Shift+5 move container to workspace number $ws5
+bindsym $mod+Shift+6 move container to workspace number $ws6
+bindsym $mod+Shift+7 move container to workspace number $ws7
+bindsym $mod+Shift+8 move container to workspace number $ws8
+bindsym $mod+Shift+9 move container to workspace number $ws9
+bindsym $mod+Shift+0 move container to workspace number $ws10
+
+#################################
+#         Reload/Restart        #
+#################################
+
+bindsym $mod+Shift+c reload
+bindsym $mod+Shift+r restart
+bindsym $mod+Shift+e exec poweroff
+
+#################################
+#          Resize Mode          #
+#################################
+
+mode "resize" {
+    bindsym j resize shrink width 10 px or 10 ppt
+    bindsym k resize grow height 10 px or 10 ppt
+    bindsym i resize shrink height 10 px or 10 ppt
+    bindsym semicolon resize grow width 10 px or 10 ppt
+
+    bindsym Left resize shrink width 10 px or 10 ppt
+    bindsym Down resize grow height 10 px or 10 ppt
+    bindsym Up resize shrink height 10 px or 10 ppt
+    bindsym Right resize grow width 10 px or 10 ppt
+
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+    bindsym $mod+r mode "default"
+}
+
+bindsym $mod+r mode "resize"
+
+#################################
+#      Volume & Brightness      #
+#################################
+
+bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +5%
+bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -5%
+bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle
+bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle
+
+bindsym XF86MonBrightnessUp exec --no-startup-id brightnessctl set +5%
+bindsym XF86MonBrightnessDown exec --no-startup-id brightnessctl set 5%-
+
+#################################
+#      Floating Windows         #
+#################################
+
+for_window [window_role="pop-up"] floating enable
+for_window [window_role="task_dialog"] floating enable
+for_window [class="Arandr"] floating enable

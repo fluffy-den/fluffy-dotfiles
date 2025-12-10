@@ -1,0 +1,102 @@
+/* ~/.config/rofi/config.rasi */
+/* Rofi configuration with Nord theme */
+
+configuration {
+    modi: "drun,run,window";
+    font: "JetBrainsMono Nerd Font 10";
+    show-icons: true;
+    icon-theme: "Papirus-Dark";
+    display-drun: "  Apps";
+    display-run: "  Run";
+    display-window: "  Windows";
+    drun-display-format: "{name}";
+    window-format: "{w} · {c} · {t}";
+}
+
+* {
+    /* Nord colors */
+    nord0: #2E3440;
+    nord1: #3B4252;
+    nord2: #434C5E;
+    nord3: #4C566A;
+    nord4: #D8DEE9;
+    nord5: #E5E9F0;
+    nord6: #ECEFF4;
+    nord7: #8FBCBB;
+    nord8: #88C0D0;
+    nord9: #81A1C1;
+    nord10: #5E81AC;
+    nord11: #BF616A;
+    
+    background-color: transparent;
+    text-color: @nord4;
+}
+
+window {
+    transparency: "real";
+    background-color: @nord0;
+    border: 2px;
+    border-color: @nord8;
+    border-radius: 10px;
+    width: 600px;
+    location: center;
+    anchor: center;
+}
+
+mainbox {
+    background-color: transparent;
+    children: [inputbar, listview];
+    padding: 20px;
+}
+
+inputbar {
+    background-color: @nord1;
+    text-color: @nord4;
+    border-radius: 6px;
+    padding: 10px;
+    children: [prompt, entry];
+    spacing: 8px;
+}
+
+prompt {
+    text-color: @nord8;
+    enabled: true;
+}
+
+entry {
+    placeholder: "Search...";
+    placeholder-color: @nord3;
+    text-color: @nord4;
+}
+
+listview {
+    columns: 1;
+    lines: 8;
+    cycle: false;
+    dynamic: true;
+    layout: vertical;
+    spacing: 5px;
+    margin: 10px 0px 0px 0px;
+}
+
+element {
+    background-color: transparent;
+    text-color: @nord4;
+    border-radius: 6px;
+    padding: 6px;
+}
+
+element selected {
+    background-color: @nord8;
+    text-color: @nord0;
+}
+
+element-icon {
+    size: 24px;
+    margin: 0px 10px 0px 0px;
+}
+
+element-text {
+    text-color: inherit;
+    vertical-align: 0.5;
+}

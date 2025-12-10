@@ -1,0 +1,13 @@
+# Ignore backup files
+*.backup
+*.swp
+*~
+
+# Ignore sensitive files
+*.key
+*.pem
+*_history
+
+# Ignore cache directories
+cache/
+Cache/
