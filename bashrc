@@ -31,6 +31,9 @@ MAGENTA='\[\033[0;35m\]'
 YELLOW='\[\033[0;33m\]'
 BOLD='\[\033[1m\]'
 
+# ssh
+eval "$(ssh-agent -s)"
+
 # Cargo
 export PATH="$HOME/.cargo/bin:$PATH"
 
