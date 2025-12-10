@@ -20,9 +20,7 @@ export GTK_THEME=Adwaita:dark
 
 # Dotnet configuration
 export DOTNET_ROOT=$HOME/.dotnet
-export PATH=$PATH:$HOME/.dotnet:$HOME/.dotnet/tools
-
-# Dotnet telemetry opt-out (optional)
+export PATH=$PATH:${DOTNET_ROOT}:${DOTNET_ROOT}/tools
 export DOTNET_CLI_TELEMETRY_OPTOUT=1
 
 # Custom colored prompt
@@ -33,7 +31,10 @@ MAGENTA='\[\033[0;35m\]'
 YELLOW='\[\033[0;33m\]'
 BOLD='\[\033[1m\]'
 
-# Prompt format: fluffy · archpc-fluffy-fix · /current/path ❯
+# Cargo
+export PATH="$HOME/.cargo/bin:$PATH"
+
+# Prompt format
 PS1="${CYAN}${BOLD}\u${RESET} ${MAGENTA}·${RESET} ${YELLOW}\h${RESET} ${MAGENTA}·${RESET} ${CYAN}\w${RESET} ${MAGENTA}❯${RESET} "
 
 # Aliases
