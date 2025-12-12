@@ -7,8 +7,10 @@
 HISTCONTROL=ignoreboth
 HISTSIZE=10000
 HISTFILESIZE=20000
+HISTTIMEFORMAT="%F %T "
 shopt -s histappend
 shopt -s checkwinsize
+shopt -s cmdhist
 
 # Default applications
 export TERMINAL=kitty
@@ -31,8 +33,13 @@ MAGENTA='\[\033[0;35m\]'
 YELLOW='\[\033[0;33m\]'
 BOLD='\[\033[1m\]'
 
-# ssh
-eval "$(ssh-agent -s)"
+# SSH Agent
+if ! pgrep -u "$USER" ssh-agent >/dev/null; then
+  ssh-agent -t 1h >"$XDG_RUNTIME_DIR/ssh-agent.env"
+fi
+if [[ ! -f "$SSH_AUTH_SOCK" ]]; then
+  source "$XDG_RUNTIME_DIR/ssh-agent.env" >/dev/null
+fi
 
 # Cargo
 export PATH="$HOME/.cargo/bin:$PATH"
@@ -44,6 +51,9 @@ PS1="${CYAN}${BOLD}\u${RESET} ${MAGENTA}·${RESET} ${YELLOW}\h${RESET} ${MAGENTA
 alias ls='ls --color=auto'
 alias ll='ls -lh'
 alias la='ls -lha'
+alias mkdir='mkdir -pv'
 alias grep='grep --color=auto'
 alias vim='nvim'
 alias vi='nvim'
+alias ..='cd ..'
+alias ...='cd ../..'
