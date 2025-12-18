@@ -33,14 +33,6 @@ MAGENTA='\[\033[0;35m\]'
 YELLOW='\[\033[0;33m\]'
 BOLD='\[\033[1m\]'
 
-# SSH Agent
-if ! pgrep -u "$USER" ssh-agent >/dev/null; then
-  ssh-agent -t 1h >"$XDG_RUNTIME_DIR/ssh-agent.env"
-fi
-if [[ ! -f "$SSH_AUTH_SOCK" ]]; then
-  source "$XDG_RUNTIME_DIR/ssh-agent.env" >/dev/null
-fi
-
 # Cargo
 export PATH="$HOME/.cargo/bin:$PATH"
 
