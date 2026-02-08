@@ -47,5 +47,12 @@ alias mkdir='mkdir -pv'
 alias grep='grep --color=auto'
 alias vim='nvim'
 alias vi='nvim'
+alias fm='nnn -de'
 alias ..='cd ..'
 alias ...='cd ../..'
+
+# NVM (Node Version Manager) initialization
+export NVM_DIR="$HOME/.nvm"
+export PATH=$HOME/.npm-global/bin:$PATH
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"                   # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion" # This loads nvm bash_completion
