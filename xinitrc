@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 
 # Set AZERTY layout
 setxkbmap fr
