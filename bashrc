@@ -12,6 +12,14 @@ shopt -s histappend
 shopt -s checkwinsize
 shopt -s cmdhist
 
+# Default compilers
+export CC=clang
+export CXX=clang++
+export LD=lld
+export AR=llvm-ar
+export NM=llvm-nm
+export RANLIB=llvm-ranlib
+
 # Default applications
 export TERMINAL=kitty
 export EDITOR=nvim
@@ -36,6 +44,9 @@ BOLD='\[\033[1m\]'
 # Cargo
 export PATH="$HOME/.cargo/bin:$PATH"
 
+# Go
+export PATH="$PATH:$HOME/go/bin"
+
 # Prompt format
 PS1="${CYAN}${BOLD}\u${RESET} ${MAGENTA}·${RESET} ${YELLOW}\h${RESET} ${MAGENTA}·${RESET} ${CYAN}\w${RESET} ${MAGENTA}❯${RESET} "
 
@@ -47,9 +58,20 @@ alias mkdir='mkdir -pv'
 alias grep='grep --color=auto'
 alias vim='nvim'
 alias vi='nvim'
-alias fm='nnn -de'
 alias ..='cd ..'
 alias ...='cd ../..'
+
+# Yazi - cd on quit wrapper (use 'y' to launch; shell follows into last directory)
+function y() {
+  local tmp
+  tmp="$(mktemp -t "yazi-cwd.XXXXXX")"
+  yazi "$@" --cwd-file="$tmp"
+  if cwd="$(cat -- "$tmp")" && [ -n "$cwd" ] && [ "$cwd" != "$PWD" ]; then
+    builtin cd -- "$cwd" || exit
+  fi
+  rm -f -- "$tmp"
+}
+alias fm='y'
 
 # NVM (Node Version Manager) initialization
 export NVM_DIR="$HOME/.nvm"
