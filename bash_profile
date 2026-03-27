@@ -13,6 +13,9 @@ export ANDROID_SDK_ROOT="/opt/android-sdk"
 # Qt applications
 export QT_QPA_PLATFORMTHEME=qt6ct
 
+# Cargo
+. "$HOME/.cargo/env"
+
 # SSH agent setup
 SSH_ENV="$HOME/.ssh/agent-environment"
 

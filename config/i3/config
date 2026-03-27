@@ -54,8 +54,10 @@ default_floating_border pixel 2
 # Compositor
 exec_always --no-startup-id picom -b
 
-# Wallpaper
-exec_always --no-startup-id feh --bg-scale ~/pictures/wallpaper_mountains.jpg
+# Video wallpaper (xwinwrap + mpv, VA-API hardware decode)
+exec_always --no-startup-id ~/.config/i3/wallpaper.sh
+# Fullscreen-pause daemon: pauses wallpaper while any window is fullscreen
+exec_always --no-startup-id pkill -f wallpaper-pause.py; sleep 1 && python3 ~/.config/i3/wallpaper-pause.py
 
 # Polybar
 exec_always --no-startup-id ~/.config/polybar/launch.sh

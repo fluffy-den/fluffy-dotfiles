@@ -43,6 +43,7 @@ BOLD='\[\033[1m\]'
 
 # Cargo
 export PATH="$HOME/.cargo/bin:$PATH"
+. "$HOME/.cargo/env"
 
 # Go
 export PATH="$PATH:$HOME/go/bin"
